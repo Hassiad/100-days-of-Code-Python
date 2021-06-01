@@ -1,4 +1,16 @@
 
+# Day 7 - Hangman
+# Dictionaries and Nesting
+
+from os import system, name
+# import sleep to show output for some time period
+from time import sleep
+# define our clear function
+def clear():
+  # for windows
+  if name == 'nt':
+    _ = system('cls') 
+
 logo = '''
                          ___________
                          \         /
@@ -17,15 +29,6 @@ print(logo)
 
 bids = {}
 bidding_finished = False
-
-from os import system, name
-# import sleep to show output for some time period
-from time import sleep
-# define our clear function
-def clear():
-  # for windows
-  if name == 'nt':
-    _ = system('cls') 
 
 def find_highest_bidder(bidding_record):
   highest_bid = 0
