@@ -15,7 +15,7 @@ class Snake:
         self.head = self.segments[0]
     
     def create_Snake(self):
-        # initial 3 segments of snake
+        """Creates initial 3 segments of snake"""
         for position in STARTING_POSITIONS:
             new_segment = Turtle(shape = "square")
             new_segment.color("white")
@@ -24,7 +24,7 @@ class Snake:
             self.segments.append(new_segment)
     
     def move(self):
-        # segment[i-1] goes to position of segment[i], segment[0] moves via user input
+        """segment[i-1] goes to position of segment[i], segment[0] moves via user input"""
         for seg_num in range(2, 0, -1):
             new_x = self.segments[seg_num-1].xcor()
             new_y = self.segments[seg_num-1].ycor()

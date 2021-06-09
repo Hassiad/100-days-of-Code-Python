@@ -2,6 +2,8 @@
 
 from turtle import Turtle, Screen
 from snake import Snake
+from food import Food
+from scoreboard import Scoreboard
 import time
 
 # Screen setup
@@ -13,6 +15,8 @@ screen.tracer(0)
 
 # Initial 3 segments of snake named Timmy
 timmy = Snake()
+food = Food()
+scoreboard = Scoreboard()
 
 # Snake movement
 screen.listen()
@@ -26,5 +30,10 @@ while game_is_on:
     screen.update()
     time.sleep(0.1)
     timmy.move()
+
+    #Detect collision with food
+    if timmy.head.distance(food) < 15:
+        food.refresh()
+        scoreboard.increase_score()
 
 screen.exitonclick()
