@@ -6,19 +6,19 @@ from food import Food
 from scoreboard import Scoreboard
 import time
 
-# Screen setup
+"""Screen setup"""
 screen = Screen()
 screen.setup(width=600,height=600)
 screen.bgcolor("black")
 screen.title("Timmy Snake Game")
 screen.tracer(0)
 
-# Initial 3 segments of snake named Timmy
+"""Initial 3 segments of snake named Timmy"""
 timmy = Snake()
 food = Food()
 scoreboard = Scoreboard()
 
-# Snake movement
+"""Snake Movement"""
 screen.listen()
 screen.onkey(timmy.up, "Up")
 screen.onkey(timmy.down, "Down")
@@ -31,9 +31,21 @@ while game_is_on:
     time.sleep(0.1)
     timmy.move()
 
-    #Detect collision with food
+    """Detect collision with food"""
     if timmy.head.distance(food) < 15:
         food.refresh()
         scoreboard.increase_score()
+        timmy.extend()
+
+    """Detect collision with wall"""
+    if timmy.head.xcor()>290 or timmy.head.xcor()<-290 or timmy.head.ycor()>290 or timmy.head.ycor()<-290:
+        game_is_on = False
+        scoreboard.game_over()
+
+    """Detect collision with tail"""
+    for segment in timmy.segments[1:]:
+        if timmy.head.distance(segment)<10:
+            game_is_on = False
+            scoreboard.game_over()
 
 screen.exitonclick()
