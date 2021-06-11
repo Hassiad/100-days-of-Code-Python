@@ -39,13 +39,13 @@ while game_is_on:
 
     """Detect collision with wall"""
     if timmy.head.xcor()>290 or timmy.head.xcor()<-290 or timmy.head.ycor()>290 or timmy.head.ycor()<-290:
-        game_is_on = False
-        scoreboard.game_over()
+        scoreboard.reset()
+        timmy.reset()
 
     """Detect collision with tail"""
     for segment in timmy.segments[1:]:
         if timmy.head.distance(segment)<10:
-            game_is_on = False
-            scoreboard.game_over()
+            scoreboard.reset()
+            timmy.reset()
 
 screen.exitonclick()
