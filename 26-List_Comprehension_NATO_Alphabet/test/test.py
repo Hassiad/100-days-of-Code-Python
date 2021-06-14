@@ -33,11 +33,55 @@
 # print(even_numbers_list)
 
 '''result which contains the numbers that are common in both files.'''
-result = []
-with open("file1.txt") as file1_data:
-    file1 = file1_data.readlines()
-with open("file2.txt") as file2_data:
-    file2 = file2_data.readlines()
-result = [int(num) for num in file1 if num in file2]
-print(result)
+# result = []
+# with open("file1.txt") as file1_data:
+#     file1 = file1_data.readlines()
+# with open("file2.txt") as file2_data:
+#     file2 = file2_data.readlines()
+# result = [int(num) for num in file1 if num in file2]
+# print(result)
 
+"""Dictionary Comprehension"""
+'''new_dict = {new_key:new_value for (key,value) in dict.item()}'''
+# import random
+# names = ["Alex", "Beth", "Caroline", "Dave", "Eleanor", "Freddie"]
+# students_score = {student:random.randint(1,100) for student in names}
+# print(students_score)
+# passed_students = {student:score for (student,score) in students_score.items() if score >= 60}
+# print(passed_students)
+
+'''Takes each word in the given sentence and calculate the number of letters in each word.'''
+# sentence = "What is the Airspeed Velocity of an Unladen Swallow?"
+# sentence = sentence.split()
+# print(sentence)
+# result = {word:len(word) for word in sentence}
+# print(result)
+
+'''Takes each temperature in degrees Celsius and converts it into degrees Fahrenheit'''
+# weather_c = {
+#     "Monday": 12,
+#     "Tuesday": 14,
+#     "Wednesday": 15,
+#     "Thursday": 14,
+#     "Friday": 21,
+#     "Saturday": 22,
+#     "Sunday": 24,
+# }
+# # (temp_c * 9/5) + 32 = temp_f
+# weather_f = {day:(temp_c*9/5+32) for (day,temp_c) in weather_c.items()}
+# print(weather_c)
+
+'''Looping through dataframe'''
+import pandas
+student_dict = {
+    "student": ["Angela", "James", "Lily"],
+    "score": [56,76,98],
+}
+student_data_frame = pandas.DataFrame(student_dict)
+# print(student_data_frame)
+'''Loop through Data Frame using iterrows()'''
+for (index, row) in student_data_frame.iterrows():
+    # print(row.score)
+    # print(row)
+    if row.student == "Angela":
+        print(row)
