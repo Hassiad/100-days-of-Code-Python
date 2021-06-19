@@ -6,6 +6,9 @@ import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
+def empty_fields():
+    messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
+
 #Password Generator Project
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
@@ -36,24 +39,17 @@ def save():
     }
 
     if len(website) == 0 or len(password) == 0:
-        messagebox.showinfo(title="Oops", message="Please make sure you haven't left any fields empty.")
+        empty_fields()
     else:
         try:
-            print("test1")
             with open("data.json", "r") as data_file:
-                #Reading old data
                 data = json.load(data_file)
         except FileNotFoundError:
-            print("test2")
             with open("data.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
         else:
-            print("test3")
-            #Updating old data with new data
             data.update(new_data)
-
             with open("data.json", "w") as data_file:
-                #Saving updated data
                 json.dump(data, data_file, indent=4)
         finally:
             website_entry.delete(0, END)
@@ -63,18 +59,21 @@ def save():
 # ---------------------------- FIND PASSWORD ------------------------------- #
 def find_password():
     website = website_entry.get()
-    try:
-        with open("data.json") as data_file:
-            data = json.load(data_file)
-    except FileNotFoundError:
-        messagebox.showinfo(title="Error", message="No Data File Found.")
+    if len(website) == 0:
+        empty_fields()
     else:
-        if website in data:
-            email = data[website]["email"]
-            password = data[website]["password"]
-            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+        try:
+            with open("data.json") as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            messagebox.showinfo(title="Error", message="No Data File Found.")
         else:
-            messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+            if website in data:
+                email = data[website]["email"]
+                password = data[website]["password"]
+                messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+            else:
+                messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
 
 # ---------------------------- UI SETUP ------------------------------- #
 
