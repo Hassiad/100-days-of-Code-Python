@@ -4,8 +4,8 @@ import smtplib
 import random
 import pandas
 
-my_email = "afe4ther@gmail.com"
-password = "fbjhaxc5"
+my_email = ""
+password = ""
 
 '''Check if today matches a birthday in the birthdays.csv'''
 today = datetime.now()

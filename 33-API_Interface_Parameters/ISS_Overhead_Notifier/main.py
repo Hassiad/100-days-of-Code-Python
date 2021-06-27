@@ -5,8 +5,8 @@ import time
 
 MY_LAT = 34.133500
 MY_LONG = -118.027020
-my_email = "afe4ther@gmail.com"
-password = "fbjhaxc5"
+my_email = ""
+password = ""
 
 def is_iss_overhead():
     response = requests.get(url="http://api.open-notify.org/iss-now.json")

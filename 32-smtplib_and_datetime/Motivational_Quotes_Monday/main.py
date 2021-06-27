@@ -6,8 +6,8 @@ import random
 import smtplib
 
 '''Send email'''
-my_email = "afe4ther@gmail.com"
-password = "fbjhaxc5"
+my_email = ""
+password = ""
 
 '''Get day of the week'''
 now = dt.datetime.now()
