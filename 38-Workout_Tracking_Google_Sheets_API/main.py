@@ -2,6 +2,12 @@
 import requests
 from datetime import date, datetime
 
+#Bearer Token Authentication
+bearer_headers = {
+"Authorization": "afe4therbearertesttoken"
+}
+
+
 GENDER = "male"
 WEIGHT_KG = 85.3
 HEIGHT_CM = 176
@@ -54,5 +60,5 @@ for exercise in result["exercises"]:
         }
     }
 
-sheety_response = requests.post(url=sheety_endpoint,json=sheet_inputs)
+sheety_response = requests.post(url=sheety_endpoint,json=sheet_inputs, headers=bearer_headers)
 print(sheety_response.text)
